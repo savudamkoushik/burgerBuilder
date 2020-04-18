@@ -15,7 +15,7 @@ class contactdata extends React.Component{
     }
     orderHandler=(event)=>{
         event.preventDefault();
-        console.log(this.props.ingredients);
+        // console.log(this.props.ingredients);
         this.setState({
                 loading:true
             });
@@ -31,7 +31,7 @@ class contactdata extends React.Component{
                     email:"koushik@test.com"
                 }
             }
-            axios.post('/orders.json',order)
+            axios.post('/neworders.json',order)
             .then(response=>
                 {this.setState({
                     loading:false

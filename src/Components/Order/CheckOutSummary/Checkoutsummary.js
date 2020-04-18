@@ -8,7 +8,7 @@ const checkoutSummary=(props)=>{
             <h1>
                 We Hope it tastes well
             </h1>
-            <div style={{ width:'100%',height:'300px',margin:'auto'}}>
+            <div style={{ width:'80%'}}>
                 <Burger ingredients={props.ingredients}/>
             </div>
             <Button btnType="Danger" clicked={props.checkoutCanceled}>CANCEL</Button>

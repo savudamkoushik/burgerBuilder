@@ -4,6 +4,7 @@ import classes from './Contactdata.module.css';
 import axios from '../../../hoc/axios-orders';
 import Spinner from '../../../Components/UI/spinner/spinner';
 import Input from '../../../Components/UI/input/input';
+import {connect} from 'react-redux';
 class contactdata extends React.Component{
     helperMethodInput=()=>{
 
@@ -102,7 +103,7 @@ class contactdata extends React.Component{
                 validation:{
                     required:true,
                     minLength:5,
-                    maxLength:10
+                    maxLength:20
                 },
                 valid:true
             }
@@ -122,7 +123,7 @@ class contactdata extends React.Component{
                 loading:true
             });
             const order={
-                ingredients:this.props.ingredients,
+                ingredients:this.props.ings,
                 totalPrice:this.props.price,
                 orderData:formData
             }
@@ -139,7 +140,7 @@ class contactdata extends React.Component{
             });
     }
     checkValditity=(value,rules)=>{
-        let isValid=false;
+        let isValid=true;
         if(rules.required){
             isValid= value.trim() !== '' && value.length >= rules.minLength && value.length <=rules.maxLength;
         }
@@ -148,6 +149,7 @@ class contactdata extends React.Component{
     }
     changedHandler=(event,inputIdentifier)=>{
         console.log(inputIdentifier);
+        console.log(this.state.orderForm[inputIdentifier].valid);
         // console.log(event.target.value);
         const updatedorderform={
             ...this.state.orderForm
@@ -207,4 +209,10 @@ class contactdata extends React.Component{
         );
     }
 }
-export default contactdata;
+const mapStateToProps=state=>{
+    return{
+        ings:state.ingredients,
+        price:state.totalPrice
+    }
+}
+export default connect(mapStateToProps)(contactdata);

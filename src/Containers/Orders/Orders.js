@@ -8,7 +8,7 @@ class myOrders extends React.Component{
         orderlist:[]
     }
     componentDidMount(){
-        axios.get('/neworders.json')
+        axios.get('/orders.json')
         .then(response=>{
             console.log(response.data);
             const fetchedOrders=[];

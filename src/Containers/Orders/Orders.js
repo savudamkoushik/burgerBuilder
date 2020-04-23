@@ -10,7 +10,7 @@ class myOrders extends React.Component{
     componentDidMount(){
         axios.get('/orders.json')
         .then(response=>{
-            console.log(response.data);
+            console.log("orderlist in orders.js"+response);
             const fetchedOrders=[];
             for(let key in response.data){
                 fetchedOrders.push({    
@@ -29,6 +29,7 @@ class myOrders extends React.Component{
         });
     }
     render(){
+        console.log("orderlist in orders.js"+this.state.orderlist);
         return(
             <div>
                 {this.state.orderlist.map(order=>(

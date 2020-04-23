@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Order.module.css';
 const order =(props)=>{
     const Ingredients=[];
-    console.log(props.ingridients);
+    // console.log("Ingridients list::"+props.ingridients);
     for(let ingridientName in props.ingridients){
         Ingredients.push(
             {
@@ -11,6 +11,7 @@ const order =(props)=>{
             }
         );
     }
+    // console.log("Ingridients list::"+Ingredients);
     const IngredientOutput=Ingredients.map(ig=>{
     return <span
             style={{textTransform:"capitalize",

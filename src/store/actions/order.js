@@ -40,3 +40,46 @@ export const purchaseInit=()=>{
         type:actionTypes.PURCHASE_INIT
     };
 };
+export const getOrdersStart=()=>{
+    return {
+        type:actionTypes.GET_ORDERS_START
+    };
+};
+export const getOrdersSuccess=(orders)=>{
+    return{
+        type:actionTypes.GET_ORDERS_SUCCESS,
+        order:orders
+    };
+};
+export const getOrdersFail=(error)=>{
+    return{
+        type:actionTypes.GET_ORDERS_FAIL,
+        error:error
+    };
+};
+export const getOrders=()=>{
+    return dispatch=>{
+        dispatch(getOrdersStart());
+        axios.get('/orders.json')
+        .then(response=>{
+            console.log("orderlist in orders.js"+response);
+            const fetchedOrders=[];
+            for(let key in response.data){
+                fetchedOrders.push({    
+                    ...response.data[key],
+                    id:key
+                })
+            }
+            dispatch(getOrdersSuccess(fetchedOrders));
+                // this.setState({
+                //     loading:false,
+                //     orderlist:fetchedOrders
+                // });
+        }).catch(error=>{
+            dispatch(getOrdersFail(error));
+            // this.setState({
+            //     loading:false
+            // });
+        });
+    };
+};

@@ -21,7 +21,7 @@ const reducer=(state=intialstate,action)=>{
                 ...action.orderdata,
                 id:action.orderId
             }
-            console.log("purchased at order reducer"+newOrder);
+            // console.log("purchased at order reducer"+newOrder);
             return{
                 ...state,
                 loading:false,
@@ -34,6 +34,22 @@ const reducer=(state=intialstate,action)=>{
                 loading:false
 
             };
+        case actionTypes.GET_ORDERS_START:
+            return{
+                ...state,
+                loading:true
+            };
+        case actionTypes.GET_ORDERS_SUCCESS:
+            return{
+                ...state,
+                orders:action.order,
+                loading:false
+            }
+        case actionTypes.GET_ORDERS_FAIL:
+            return{
+                ...state,
+                loading:false
+            }
         default: return state;
 
     }
